@@ -1,0 +1,25 @@
+.profile__overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 0.4s ease-in-out;
+  background-color: black;
+  cursor: pointer;
+}
+
+.profile__overlay:hover {
+  opacity: 0.8;
+  background-image: url("../../../images/icon-pencil.svg");
+  background-size: 26px 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: scale(1.2);
+}
+
+
