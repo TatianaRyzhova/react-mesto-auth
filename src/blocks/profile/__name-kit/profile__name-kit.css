@@ -1,0 +1,13 @@
+.profile__name-kit {
+  max-width: 336px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__name-kit {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,13 @@
+.popup__content-zoomed {
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  z-index: 2;
+
+}
+
+@media screen and (max-width: 767px) {
+  .popup__content-zoomed {
+    max-width: 282px;
+  }
+}

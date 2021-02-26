@@ -1,0 +1,4 @@
+.cards__remove-button_hidden {
+  visibility: hidden;
+  opacity: 0;
+}
