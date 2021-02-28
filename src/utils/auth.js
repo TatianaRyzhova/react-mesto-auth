@@ -1,6 +1,8 @@
 import {AUTH_BASE_URL} from "./constants";
 
-const responseCheck = (response) => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`);
+const responseCheck = (response) => response.ok
+  ? response.json()
+  : Promise.reject(`Ошибка ${response.status}`);
 
 export const register = (email, password) => {
   return fetch(`${AUTH_BASE_URL}/signup`, {

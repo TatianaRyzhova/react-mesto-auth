@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Register({onRegister}) {
   const initialData = {
@@ -22,7 +22,7 @@ function Register({onRegister}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!data.username || !data.password || !data.email) {
+    if (!data.email || !data.password) {
       return;
     }
     onRegister(data)
@@ -41,7 +41,9 @@ function Register({onRegister}) {
                value={data.password} onChange={handleChange}
                placeholder="Пароль" minLength={6} maxLength={20} required
         />
-        <button type="submit" aria-label="Save" className="auth__save-button auth__save-button_sign-up">Зарегистрироваться</button>
+        <button type="submit" aria-label="Save"
+                className="auth__save-button auth__save-button_sign-up">Зарегистрироваться
+        </button>
       </form>
       <div className="auth__signin">
         <p>Уже зарегистрированы?</p>
