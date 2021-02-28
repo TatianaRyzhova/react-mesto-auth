@@ -41,7 +41,7 @@ function Register({onRegister}) {
                value={data.password} onChange={handleChange}
                placeholder="Пароль" minLength={6} maxLength={20} required
         />
-        <button type="submit" aria-label="Save" className="auth__save-button">Зарегистрироваться</button>
+        <button type="submit" aria-label="Save" className="auth__save-button auth__save-button_sign-up">Зарегистрироваться</button>
       </form>
       <div className="auth__signin">
         <p>Уже зарегистрированы?</p>

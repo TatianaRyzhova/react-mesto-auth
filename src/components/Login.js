@@ -40,7 +40,7 @@ function Login({onLogin}) {
                value={data.password} onChange={handleChange}
                placeholder="Пароль" minLength={6} maxLength={20} required
         />
-        <button type="submit" aria-label="Save" className="auth__save-button">Войти</button>
+        <button type="submit" aria-label="Save" className="auth__save-button auth__save-button_sign-in">Войти</button>
       </form>
     </div>
 
