@@ -15,17 +15,12 @@ function Login({onLogin}) {
     }));
   }
 
-  const resetForm = () => {
-    setData(initialData);
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!data.email || !data.password) {
       return;
     }
     onLogin(data)
-      .then(resetForm)
   }
 
   return (

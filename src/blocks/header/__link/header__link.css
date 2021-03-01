@@ -1,4 +1,4 @@
-.menu{
+.header__link{
   margin-bottom: 46px;
   color: #FFFFFF;
   text-decoration: none;
@@ -6,8 +6,10 @@
   font-size: 18px;
   line-height: 22px;
   transition: 0.5s ease-in-out;
+  display: flex;
+  justify-content: space-between;
 }
 
-.menu:hover {
+.header__link:hover {
   opacity: 0.8;
 }

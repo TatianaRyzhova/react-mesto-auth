@@ -14,12 +14,12 @@ import AddPlacePopup from "./AddPlacePopup";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./Login";
 import Register from "./Register";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const history = useHistory();
-
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
@@ -31,13 +31,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const tokenCheck = useCallback(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      checkToken(jwt)
+    const token = localStorage.getItem('token');
+    if (token) {
+      checkToken(token)
         .then((result) => {
           if (result) {
             setLoggedIn(true);
-            setEmail(result.email);
+            setEmail(result.data.email);
             history.push('/');
           }
         })
@@ -56,12 +56,19 @@ function App() {
           setLoggedIn(true);
           setEmail(email);
           history.push('/');
-          localStorage.setItem('jwt', result.token);
+          localStorage.setItem('token', result.token);
         }
       })
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setEmail('');
+    setLoggedIn(false);
+    history.push('/sign-in');
   }
 
   const handleRegister = ({email, password}) => {
@@ -195,7 +202,10 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header/> {/*need to put Email, handleLogout, isLoggned*/}
+        <Header
+          email={email}
+          onSignOut={handleSignOut}
+        />
         <Switch>
           <Route path="/sign-up">
             <Register onRegister={handleRegister}/>
@@ -250,6 +260,12 @@ function App() {
           title={'Вы уверены?'}
           submitButtonText={'Да'}>
         </PopupWithForm>
+
+        <InfoTooltip>
+          isOpen={isInfoTooltipPopupOpen}
+          success={success}
+          onClose={closeAllPopups}
+        </InfoTooltip>
       </CurrentUserContext.Provider>
     </div>
   );
