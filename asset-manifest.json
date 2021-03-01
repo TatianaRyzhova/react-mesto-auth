@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3a35b368.chunk.css",
+    "main.js": "./static/js/main.532332f7.chunk.js",
+    "main.js.map": "./static/js/main.532332f7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.70ec8c18.js",
+    "runtime-main.js.map": "./static/js/runtime-main.70ec8c18.js.map",
+    "static/js/2.a029b2ce.chunk.js": "./static/js/2.a029b2ce.chunk.js",
+    "static/js/2.a029b2ce.chunk.js.map": "./static/js/2.a029b2ce.chunk.js.map",
+    "static/js/3.23b18a8d.chunk.js": "./static/js/3.23b18a8d.chunk.js",
+    "static/js/3.23b18a8d.chunk.js.map": "./static/js/3.23b18a8d.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.3a35b368.chunk.css.map": "./static/css/main.3a35b368.chunk.css.map",
+    "static/js/2.a029b2ce.chunk.js.LICENSE.txt": "./static/js/2.a029b2ce.chunk.js.LICENSE.txt",
+    "static/media/index.css": "./static/media/icon-trash.cbc09a89.svg",
+    "static/media/auth-failure.df8eddf6.svg": "./static/media/auth-failure.df8eddf6.svg",
+    "static/media/auth-success.6a432c88.svg": "./static/media/auth-success.6a432c88.svg",
+    "static/media/header-logo.a307e1c4.svg": "./static/media/header-logo.a307e1c4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.70ec8c18.js",
+    "static/js/2.a029b2ce.chunk.js",
+    "static/css/main.3a35b368.chunk.css",
+    "static/js/main.532332f7.chunk.js"
+  ]
+}
