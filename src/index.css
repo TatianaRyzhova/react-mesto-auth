@@ -59,3 +59,6 @@
 @import url("./blocks/input-error/input-error.css");
 @import url("./blocks/input-error/_avatar/input-error_avatar.css");
 @import url("./blocks/popup/__save-button/_state/popup__save-button_state_disabled.css");
+@import url("./blocks/info-tooltip/info-tooltip.css");
+@import url("./blocks/info-tooltip/__image/info-tooltip__image.css");
+@import url("./blocks/info-tooltip/__message/info-tooltip__message.css");

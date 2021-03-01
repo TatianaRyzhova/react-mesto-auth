@@ -11,7 +11,7 @@ function InfoTooltip(props) {
                 onClick={props.onClose}
         />
         <div className="info-tooltip">
-          <img src={props.success ? authSuccessImage : authFailureImage} alt="Ответ от регистрации" className="info-tooltip__image"/>
+          <img src={props.success ? authSuccessImage : authFailureImage} alt="Ответ регистрации" className="info-tooltip__image"/>
           <p className="info-tooltip__message">
             {props.success ?
               "Вы успешно зарегистрировались!" :

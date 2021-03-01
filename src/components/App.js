@@ -80,7 +80,7 @@ function App() {
         return result
       })
       .catch((error) => {
-        setInfoTooltipPopupOpen(false);
+        setInfoTooltipPopupOpen(true);
         console.log(error)
       })
   }
@@ -261,11 +261,11 @@ function App() {
           submitButtonText={'Да'}>
         </PopupWithForm>
 
-        <InfoTooltip>
+        <InfoTooltip
           isOpen={isInfoTooltipPopupOpen}
           success={success}
           onClose={closeAllPopups}
-        </InfoTooltip>
+        />
       </CurrentUserContext.Provider>
     </div>
   );
