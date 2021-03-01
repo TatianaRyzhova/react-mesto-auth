@@ -10,7 +10,7 @@ Mesto - сервис представляющий собой интеракти�
 3. JavaScript
 4. React
 
-Ссылка на проект: https://tatianaryzhova.github.io/mesto-react/
+Ссылка на проект: https://tatianaryzhova.github.io/react-mesto-auth/
 
 ## Запуск проекта
 
