@@ -1,6 +1,6 @@
 import React from "react";
-import authFailureImage from "../images/auth-failure.jpg";
-import authSuccessImage from "../images/auth-success.jpg";
+import authFailureImage from "../images/auth-failure.svg";
+import authSuccessImage from "../images/auth-success.svg";
 
 function InfoTooltip(props) {
   return(
@@ -15,7 +15,7 @@ function InfoTooltip(props) {
           <p className="info-tooltip__message">
             {props.success ?
               "Вы успешно зарегистрировались!" :
-              "Что-то пошло не так!\n Попробуйте ещё раз."
+              "Что-то пошло не так! Попробуйте ещё раз."
             }
           </p>
         </div>
