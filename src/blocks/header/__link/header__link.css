@@ -1,0 +1,15 @@
+.header__link{
+  margin-bottom: 46px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__link:hover {
+  opacity: 0.8;
+}

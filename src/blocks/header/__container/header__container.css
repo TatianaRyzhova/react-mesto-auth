@@ -1,0 +1,10 @@
+.header__container {
+  display: flex;
+}
+
+.header__container a {
+  color: #A9A9A9;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}

@@ -33,3 +33,4 @@ export const validationConfig = {
 
 export const TOKEN = '62754a6c-b4dd-499b-bbf2-c3cad68b20ab';
 export const BASE_URL = 'https://mesto.nomoreparties.co/v1/cohort-19';
+export const AUTH_BASE_URL = 'https://auth.nomoreparties.co';
