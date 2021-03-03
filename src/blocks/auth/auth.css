@@ -2,3 +2,9 @@
   max-width: 358px;
   margin: 60px auto 112px;
 }
+
+@media screen and (max-width: 767px) {
+  .auth {
+    margin: 40px auto 0px;
+  }
+}

@@ -20,3 +20,20 @@
 ::placeholder {
   color: #CCCCCC;
 }
+
+@media screen and (max-width: 767px) {
+  .auth__input {
+    max-width: 260px;
+    margin-top: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  .auth__input:first-of-type {
+    margin-bottom: 0;
+  }
+
+  .auth__input:last-of-type {
+    margin-bottom: 173px;
+  }
+}
