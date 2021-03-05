@@ -1,0 +1,10 @@
+.info-tooltip__close-button {
+
+}
+
+@media screen and (max-width: 767px) {
+  .info-tooltip__close-button {
+    top: -40px;
+    right: 125px;
+  }
+}

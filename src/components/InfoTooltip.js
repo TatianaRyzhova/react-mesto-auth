@@ -7,7 +7,7 @@ function InfoTooltip(props) {
     <div className={`popup popup_type_info-tooltip ${props.isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__content">
         <button type="button" aria-label="Close"
-                className="popup__close-button"
+                className="popup__close-button info-tooltip__close-button"
                 onClick={props.onClose}
         />
         <div className="info-tooltip">
