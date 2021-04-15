@@ -31,5 +31,5 @@ export const validationConfig = {
   buttonInvalidClass: 'popup__save-button_state_disabled',
 };
 
-export const BASE_URL = 'http://localhost:3000';
-export const AUTH_BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://api.mesto.praktikum.nomoredomains.club';
+export const AUTH_BASE_URL = 'http://api.mesto.praktikum.nomoredomains.club';
