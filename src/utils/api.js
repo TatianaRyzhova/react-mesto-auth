@@ -1,9 +1,8 @@
-import {BASE_URL, TOKEN} from './constants';
+import {BASE_URL} from './constants';
 
 class Api {
-  constructor({baseUrl, headers}) {
+  constructor({baseUrl}) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
   }
 
   _checkRequestStatus(result) {
@@ -16,7 +15,10 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
     })
       .then(result => {
         return this._checkRequestStatus(result)
@@ -26,7 +28,10 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
     })
       .then(result => {
         return this._checkRequestStatus(result)
@@ -36,7 +41,10 @@ class Api {
   updateUserProfile(name, title) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
         name: name,
         about: title
@@ -50,7 +58,10 @@ class Api {
   postNewCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
         name: name,
         link: link
@@ -62,9 +73,12 @@ class Api {
   }
 
   addCardLike(id) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this._baseUrl}/cards/${id}/likes/`, {
       method: 'PUT',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
     })
       .then(result => {
         return this._checkRequestStatus(result)
@@ -72,9 +86,12 @@ class Api {
   }
 
   deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this._baseUrl}/cards/${id}/likes/`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
     })
       .then(result => {
         return this._checkRequestStatus(result)
@@ -84,7 +101,10 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      }
     })
       .then(result => {
         return this._checkRequestStatus(result);
@@ -94,7 +114,10 @@ class Api {
   updateAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+      },
       body: JSON.stringify({
         avatar: link
       })
@@ -106,11 +129,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: BASE_URL,
-  headers: {
-    authorization: TOKEN,
-    'Content-Type': 'application/json'
-  }
+  baseUrl: BASE_URL
 })
 
 

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Redirect, Route, Switch, useHistory} from 'react-router-dom';
 import Header from "./Header";
 import Footer from "./Footer";
@@ -30,33 +30,30 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const tokenCheck = useCallback(() => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       checkToken(token)
         .then((result) => {
           if (result) {
             setLoggedIn(true);
-            setEmail(result.data.email);
+            setEmail(result.email);
             history.push('/');
           }
         })
         .catch(() => history.push('/sign-in'));
     }
-  }, [history])
-
-  useEffect(() => {
-    tokenCheck();
-  }, [tokenCheck])
+  }, [history]);
 
   const handleLogin = ({email, password}) => {
     return authorize(email, password)
       .then(result => {
         if (result.token) {
+          localStorage.setItem('token', result.token);
           setLoggedIn(true);
           setEmail(email);
           history.push('/');
-          localStorage.setItem('token', result.token);
+
         }
       })
       .catch((error) => {
@@ -86,27 +83,31 @@ function App() {
   }
 
   useEffect(() => {
-    api.getUserInfo()
-      .then((response) => {
-        setCurrentUser(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (loggedIn) {
+      api.getUserInfo()
+        .then((response) => {
+          setCurrentUser(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [loggedIn])
 
   useEffect(() => {
-    api.getInitialCards()
-      .then((response) => {
-        setCards(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (loggedIn) {
+      api.getInitialCards()
+        .then((response) => {
+          setCards(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [loggedIn])
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     const likeRequest = !isLiked ? api.addCardLike(card._id) : api.deleteLike(card._id);
     likeRequest
       .then((newCard) => {
