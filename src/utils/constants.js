@@ -31,5 +31,5 @@ export const validationConfig = {
   buttonInvalidClass: 'popup__save-button_state_disabled',
 };
 
-export const BASE_URL = 'http://api.mesto.praktikum.nomoredomains.club';
-export const AUTH_BASE_URL = 'http://api.mesto.praktikum.nomoredomains.club';
+export const BASE_URL = 'http://api.mesto.tatiana.nomoredomains.club';
+export const AUTH_BASE_URL = 'http://api.mesto.tatiana.nomoredomains.club';
