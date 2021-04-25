@@ -33,7 +33,13 @@ function PopupWithForm(props) {
         <form name={`${props.name}Data`} className={`popup__form popup__${props.name}-form`} onSubmit={props.onSubmit}
               noValidate>
           {props.children}
-          <button type="submit" aria-label="Save" className="popup__save-button">{props.submitButtonText}</button>
+          <button type="submit"
+                  aria-label="Save"
+                  className={`popup__save-button ${props.isDisabled && "popup__save-button_state_disabled"}`}
+                  disabled={props.isDisabled}
+          >
+            {props.submitButtonText}
+          </button>
         </form>
       </div>
     </div>
