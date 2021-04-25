@@ -39,6 +39,7 @@
 @import url("./blocks/cards/__like-counter/cards__like-counter.css");
 @import url("./blocks/cards/__like-kit/cards__like-kit.css");
 @import url("./blocks/cards/__group/cards__group.css");
+@import url("./blocks/cards/__loading/cards__loading.css");
 @import url("./blocks/footer/footer.css");
 @import url("./blocks/footer/__copyright/footer__copyright.css");
 @import url("./blocks/popup/popup.css");

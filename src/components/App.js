@@ -31,6 +31,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCardsLoading, setIsCardsLoading] = useState(false);
+  const [isCardsLoadError, setIsCardsLoadError] = React.useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -55,7 +57,6 @@ function App() {
           setLoggedIn(true);
           setEmail(email);
           history.push('/');
-
         }
       })
       .catch((error) => {
@@ -97,13 +98,18 @@ function App() {
   }, [loggedIn])
 
   useEffect(() => {
+    setIsCardsLoading(true);
+    setIsCardsLoadError('');
     if (loggedIn) {
       api.getInitialCards()
         .then((response) => {
           setCards(response)
         })
         .catch((error) => {
-          console.log(error)
+          setIsCardsLoadError(error);
+        })
+        .finally(() => {
+          setIsCardsLoading(false);
         })
     }
   }, [loggedIn])
@@ -234,6 +240,8 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDeleteRequest}
             cards={cards}
+            isCardsLoading={isCardsLoading}
+            isCardsError={isCardsLoadError}
           />
 
           <Route>
