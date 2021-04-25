@@ -24,8 +24,10 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
   const [success, setSuccess] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
+  const [cardForDelete, setCardForDelete] = React.useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -118,11 +120,18 @@ function App() {
       });
   }
 
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
+  function handleCardDeleteRequest(card) {
+    setCardForDelete(card);
+    setIsDeleteCardPopupOpen(true);
+  }
+
+  function handleCardDelete(event) {
+    event.preventDefault();
+    api.deleteCard(cardForDelete._id)
       .then(() => {
-        const newCards = cards.filter((c) => c._id !== card._id);
+        const newCards = cards.filter((c) => c._id !== cardForDelete._id);
         setCards(newCards);
+        setIsDeleteCardPopupOpen(false);
       })
       .catch((error) => {
         console.log(error)
@@ -197,6 +206,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setInfoTooltipPopupOpen(false);
     setSelectedCard(false);
+    setIsDeleteCardPopupOpen(false);
   }
 
   return (
@@ -222,7 +232,7 @@ function App() {
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDelete={handleCardDeleteRequest}
             cards={cards}
           />
 
@@ -256,9 +266,13 @@ function App() {
         />
 
         <PopupWithForm
+          isOpen={isDeleteCardPopupOpen}
           name={'confirmation'}
           title={'Вы уверены?'}
-          submitButtonText={'Да'}>
+          submitButtonText={'Да'}
+          onSubmit={handleCardDelete}
+          onClose={closeAllPopups}
+        >
         </PopupWithForm>
 
         <InfoTooltip
