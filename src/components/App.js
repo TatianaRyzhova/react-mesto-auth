@@ -111,8 +111,7 @@ function App() {
     const likeRequest = !isLiked ? api.addCardLike(card._id) : api.deleteLike(card._id);
     likeRequest
       .then((newCard) => {
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        setCards(newCards);
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
       .catch((error) => {
         console.log(error)
