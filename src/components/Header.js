@@ -16,7 +16,7 @@ function Header({email, onSignOut}) {
   }
 
   return (
-    <header className={`header
+    <header className={`header page__section
          ${isMenuOpen ? "header_menu-open" : ""}
          ${isMain ? "header_page-main" : ""}`}
     >

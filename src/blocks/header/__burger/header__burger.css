@@ -16,8 +16,8 @@
     padding: 0;
     cursor: pointer;
     right: 15px;
+    bottom: 27px;
     outline: none;
-    margin-top: 27px;
   }
 
   .header__burger:hover {
