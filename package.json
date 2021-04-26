@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && scp -r ./build/* tatianar@84.201.148.130:/home/tatianar/mesto-frontend",
     "predeploy": "npm run build"
   },
   "repository": {
