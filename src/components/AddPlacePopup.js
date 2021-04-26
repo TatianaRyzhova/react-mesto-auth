@@ -1,26 +1,18 @@
 import PopupWithForm from "./PopupWithForm";
-import React, {useState} from "react";
+import React, {useEffect} from "react";
+import {useFormWithValidation} from "../hooks/useForm";
 
 function AddPlacePopup(props) {
-  const [name, setName] = useState('');
-  const [link, setLink] = useState('');
 
-  function handleNameChange(event) {
-    setName(event.target.value);
-  }
+  const {values, errors, isValid, handleChange, resetForm} = useFormWithValidation();
 
-  function handleLinkChange(event) {
-    setLink(event.target.value);
-  }
+  useEffect(() => {
+    resetForm();
+  }, [props.isOpen, resetForm]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.onAddPlace({
-      name,
-      link
-    });
-    setName('');
-    setLink('');
+    props.onAddPlace(values);
   }
 
   return (
@@ -31,15 +23,20 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      isDisabled={!isValid || props.isLoading}
     >
       <input type="text" name="name" className="popup__input popup__input_type_card-title" id="card-title-input"
-             value={name} onChange={handleNameChange}
+             value={values.name || ""} onChange={handleChange}
              placeholder="Название" minLength={2} maxLength={30} required/>
-      <span id="card-title-input-error" className="input-error"/>
+      <span id="card-title-input-error" className="input-error">
+        {errors.name || ""}
+      </span>
       <input type="url" name="link" className="popup__input popup__input_type_card-link" id="card-link-input"
-             value={link} onChange={handleLinkChange}
+             value={values.link || ""} onChange={handleChange}
              placeholder="Ссылка на картинку" required/>
-      <span id="card-link-input-error" className="input-error"/>
+      <span id="card-link-input-error" className="input-error">
+        {errors.link || ""}
+      </span>
     </PopupWithForm>
   )
 

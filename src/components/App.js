@@ -24,11 +24,15 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
   const [success, setSuccess] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
+  const [cardForDelete, setCardForDelete] = React.useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCardsLoading, setIsCardsLoading] = useState(false);
+  const [isCardsLoadError, setIsCardsLoadError] = React.useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -53,7 +57,6 @@ function App() {
           setLoggedIn(true);
           setEmail(email);
           history.push('/');
-
         }
       })
       .catch((error) => {
@@ -95,13 +98,18 @@ function App() {
   }, [loggedIn])
 
   useEffect(() => {
+    setIsCardsLoading(true);
+    setIsCardsLoadError('');
     if (loggedIn) {
       api.getInitialCards()
         .then((response) => {
           setCards(response)
         })
         .catch((error) => {
-          console.log(error)
+          setIsCardsLoadError(error);
+        })
+        .finally(() => {
+          setIsCardsLoading(false);
         })
     }
   }, [loggedIn])
@@ -111,19 +119,25 @@ function App() {
     const likeRequest = !isLiked ? api.addCardLike(card._id) : api.deleteLike(card._id);
     likeRequest
       .then((newCard) => {
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        setCards(newCards);
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
       .catch((error) => {
         console.log(error)
       });
   }
 
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
+  function handleCardDeleteRequest(card) {
+    setCardForDelete(card);
+    setIsDeleteCardPopupOpen(true);
+  }
+
+  function handleCardDelete(event) {
+    event.preventDefault();
+    api.deleteCard(cardForDelete._id)
       .then(() => {
-        const newCards = cards.filter((c) => c._id !== card._id);
+        const newCards = cards.filter((c) => c._id !== cardForDelete._id);
         setCards(newCards);
+        setIsDeleteCardPopupOpen(false);
       })
       .catch((error) => {
         console.log(error)
@@ -198,6 +212,7 @@ function App() {
     setAddPlacePopupOpen(false);
     setInfoTooltipPopupOpen(false);
     setSelectedCard(false);
+    setIsDeleteCardPopupOpen(false);
   }
 
   return (
@@ -223,8 +238,10 @@ function App() {
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDelete={handleCardDeleteRequest}
             cards={cards}
+            isCardsLoading={isCardsLoading}
+            isCardsError={isCardsLoadError}
           />
 
           <Route>
@@ -257,9 +274,13 @@ function App() {
         />
 
         <PopupWithForm
+          isOpen={isDeleteCardPopupOpen}
           name={'confirmation'}
           title={'Вы уверены?'}
-          submitButtonText={'Да'}>
+          submitButtonText={'Да'}
+          onSubmit={handleCardDelete}
+          onClose={closeAllPopups}
+        >
         </PopupWithForm>
 
         <InfoTooltip

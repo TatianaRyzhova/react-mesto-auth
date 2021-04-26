@@ -22,18 +22,25 @@ function Main(props) {
         <button type="button" aria-label="Add" className="profile__add-button" onClick={props.onAddPlace}/>
       </section>
 
-      <div id="cards-template" className="cards">
-        {props.cards.map((card) => (
-            <Card
-              key={card._id}
-              card={card}
-              onCardClick={props.onCardClick}
-              onCardLike={props.onCardLike}
-              onCardDelete={props.onCardDelete}
-            />
-          )
+
+        {props.isCardsLoading || props.isCardsError ? (
+          <p className="cards__loading">
+            {props.isCardsLoading ? 'Загрузка...' : props.isCardsError}
+          </p>
+        ) : (
+          <div id="cards-template" className="cards">
+            {props.cards.map((card) => (
+                <Card
+                  key={card._id}
+                  card={card}
+                  onCardClick={props.onCardClick}
+                  onCardLike={props.onCardLike}
+                  onCardDelete={props.onCardDelete}
+                />
+              )
+            )}
+          </div>
         )}
-      </div>
     </main>
   )
 }

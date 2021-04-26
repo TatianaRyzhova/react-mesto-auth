@@ -1,0 +1,11 @@
+.cards__loading {
+  color: #fff;
+  text-align: center;
+  font-size: 80px;
+}
+
+@media screen and (max-width: 767px) {
+  .cards__loading {
+    font-size: 27px;
+  }
+}

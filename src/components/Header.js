@@ -1,14 +1,25 @@
 import logo from '../images/header-logo.svg';
-import React from "react";
-import {Link, Route, Switch} from 'react-router-dom';
+import React, {useState} from "react";
+import {Link, Route, Switch, useRouteMatch} from 'react-router-dom';
 
 function Header({email, onSignOut}) {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  function toggleMenu() {
+    setMenuOpen(!isMenuOpen);
+  }
+
+  const isMain = useRouteMatch({path: "/", exact: true});
+
   const handleSignOut = function () {
     onSignOut();
   }
 
   return (
-    <header className="header">
+    <header className={`header
+         ${isMenuOpen ? "header_menu-open" : ""}
+         ${isMain ? "header_page-main" : ""}`}
+    >
       <img src={logo} alt="Mesto Russia лого" className="header__logo"/>
       <nav>
         <ul className="header__navigation">
@@ -24,7 +35,13 @@ function Header({email, onSignOut}) {
               </li>
             </Route>
             <Route path="/">
-              <div className="header__container">
+              <button
+                className='header__burger'
+                type='button'
+                aria-label='меню'
+                onClick={toggleMenu}
+              ></button>
+              <div className="header__wrapper">
                 <li>
                   <p className="header__email">{email}</p>
                 </li>
