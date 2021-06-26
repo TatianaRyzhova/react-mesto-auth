@@ -29,11 +29,13 @@ function Header({email, onSignOut}) {
                 <Link to="/sign-in" className="header__link">Войти</Link>
               </li>
             </Route>
+
             <Route path="/sign-in">
               <li>
                 <Link to="/sign-up" className="header__link">Регистрация</Link>
               </li>
             </Route>
+
             <Route path="/">
               <button
                 className='header__burger'

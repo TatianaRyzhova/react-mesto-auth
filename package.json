@@ -20,6 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && scp -r ./build/* tatianar@84.201.148.130:/home/tatianar/mesto-frontend",
+    "deploygh": "gh-pages -d dist",
     "predeploy": "npm run build"
   },
   "repository": {
@@ -45,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^3.2.3",
     "react-router-dom": "^5.2.0"
   }
 }
