@@ -8,10 +8,7 @@ _______
 
 ## Project description:
 
-Mesto is a single-page application.
-It is a service which allows users to interact with photos. Users can add, remove their photos and put likes.
-Also, users has opportunity to edit their information: profile picture, name and description.
-User should be registered and authorized to be able to use the application.
+Mesto is a single-page application. It is a service that allows users to interact with photos. Users can add, remove their photos, and put likes. Also, users have the opportunity to edit their information: profile picture, name, and description. Users should be registered and authorized to be able to use the application.
 
 :iphone: The app is adapted to mobile size.
 
